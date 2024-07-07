@@ -33,7 +33,14 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try{
+
+            $employee = $this->employee->create($request->all());
+            return response()->json($employee, 201);
+        }
+        catch(\Exception $e){
+            return response()->json(['error' => $e], 500);
+        }
     }
 
     /**
